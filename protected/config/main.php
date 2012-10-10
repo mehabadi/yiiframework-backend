@@ -72,8 +72,8 @@ return array(
         'urlManager' => array(
             'class' => 'application.components.UrlManager',
             'urlFormat' => 'path',
-            //'urlSuffix'=>'.html',
-            //'showScriptName' => false,
+            'urlSuffix'=>'.html',
+            'showScriptName' => false,
             'rules' => array(
                 '/' => 'account/index',
                 '<language:(fa|ar|en)>/' => 'account/index',
@@ -88,21 +88,15 @@ return array(
             // specify language_locale, could be based on domain name, URI, cookie, etc
             'language' => 'ar_ae', // means arabic
             'language' => 'fa_ir', // means persian
-        ),
+        ),        
         'HtmlHelpers' => array(
             'class' => 'application.components.HtmlHelpers',
+        ),
+        'session' => array(
+                'timeout' => 100,
         ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
-    'params' => array(
-        // this is used in contact page
-        'copyright' => 'IITCO',
-        'copyright_url' => 'http://iitco.ir',
-        'adminEmail' => 'webmaster@example.com',
-        'languages' => array('en' => 'English', 'fa' => 'فارسی', 'ar' => 'العربی'),
-        'direction' => 'ltr',
-        'gettext_cache' => false,
-        'applicationId' => 1,
-    ),
+    'params' => require(dirname(__FILE__).'/params.php'),
 );

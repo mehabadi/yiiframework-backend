@@ -4,7 +4,7 @@
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
  */
-class BackendController extends Controller{
+class BackendController extends Controller {
 
     /**
      * @return array action filters
@@ -25,12 +25,24 @@ class BackendController extends Controller{
         return array(
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
                 'actions' => array('index', 'delete', 'create', 'update'),
-                'roles' => array('admin','manager'),
+                'roles' => array('admin', 'manager'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
+    }
+
+    public function beforeAction($action) {
+        // Check only when the user is logged in
+        if (yii::app()->user->getState('userSessionTimeout') < time()) {
+            // timeout
+            Yii::app()->user->logout();
+            $this->redirect($this->createUrl('/account/index'));  //
+        } else {
+            yii::app()->user->setState('userSessionTimeout', time() + Yii::app()->session->timeout);
+            return true;
+        }
     }
 
 }

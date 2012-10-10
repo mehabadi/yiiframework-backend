@@ -1,6 +1,6 @@
 <div id="alertMessage"></div>
 <div id="successLogin"></div>
-<div class="text_success"><img src="<?php echo Yii::app()->baseUrl; ?>/themes/admin/images/loadder/loader_green.gif"  alt="ziceAdmin" /><span>Please wait</span></div>
+<div class="text_success"><img src="<?php echo Yii::app()->baseUrl; ?>/themes/admin/images/loadder/loader_green.gif"  alt="ziceAdmin" /><span><?php echo _("Please wait");?></span></div>
 
 <div id="login" >
     <div class="ribbon"></div>

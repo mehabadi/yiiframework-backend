@@ -2,6 +2,11 @@ $(function(){
     $('#alertMessage').click(function(){
         hideTop();
     });
+    
+    $("#logout").click(function(){
+        Logout();
+    });
+            
 })
 
 function hideTop(){
@@ -14,7 +19,7 @@ function hideTop(){
 }
 
 function loading(name,overlay) {  
-    $('body').append('<div id="overlay"></div><div id="preloader">'+name+'..</div>');
+    $('body').append('<div id="overlay"></div><div id="preloader">'+name+'...</div>');
     if(overlay==1){
         $('#overlay').css('opacity',0.1).fadeIn(function(){
             $('#preloader').fadeIn();
@@ -44,3 +49,11 @@ function showError(str,time){
     }, time);	
 	
 }
+
+function Logout(){
+    loading('Waiting',1);
+    setTimeout( "unloading()", 2000 );                                
+    $(".text_loading").slideDown();
+    setTimeout($(".text_loading").slideDown(), 2000);
+    setTimeout( "window.location.href='"+ _LOGOUT_URL +"'",2000 );
+}  

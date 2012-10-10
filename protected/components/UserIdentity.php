@@ -20,6 +20,7 @@ class UserIdentity extends CUserIdentity {
             $this->_id = $user->UserId;
             $this->username = $user->UserName;
             $this->setState('roles', $user->role->RoleName);
+            
             $this->errorCode=self::ERROR_NONE;
         }
         return $this->errorCode==self::ERROR_NONE;
@@ -29,22 +30,3 @@ class UserIdentity extends CUserIdentity {
         return $this->_id;
     }
 }
-//class UserIdentity extends CUserIdentity
-//{	
-//	public function authenticate()
-//	{
-//		$users=array(
-//			// username => password
-//			'demo'=>'demo',
-//			'admin'=>'admin',
-//		);
-//		if(!isset($users[$this->username]))
-//			$this->errorCode=self::ERROR_USERNAME_INVALID;
-//		else if($users[$this->username]!==$this->password)
-//			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-//		else
-//			$this->errorCode=self::ERROR_NONE;
-//		return !$this->errorCode;
-//}
-	
-//}

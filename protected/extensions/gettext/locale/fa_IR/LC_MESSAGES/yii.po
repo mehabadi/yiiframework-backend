@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: behnoushiran.com\n"
-"POT-Creation-Date: 2012-09-27 02:01+0330\n"
-"PO-Revision-Date: 2012-09-27 02:01+0330\n"
+"POT-Creation-Date: 2012-10-11 00:20+0330\n"
+"PO-Revision-Date: 2012-10-11 00:20+0330\n"
 "Last-Translator: Mohsen Meh Abadi <m.mehabadi@gmail.com>\n"
 "Language-Team:  <m.mehabadi@gmail.com>\n"
 "Language: Persian\n"
@@ -15,46 +15,87 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: protected/controllers/AccountController.php:67
+msgid "UERNAME OR PASSWORD IS INCORRECT"
+msgstr "نام کاربری یا کلمه عبور اشتباه می باشد."
+
+#: protected/models/LoginForm.php:53
+msgid "Incorrect username or password."
+msgstr "نام کاربری یا کلمه عبور اشتباه می باشد."
+
+#: protected/views/account/index.php:3 themes/admin/views/layouts/main.php:85
+msgid "Please wait"
+msgstr "شکیبا باشید"
+
+#: protected/views/account/index.php:24
+msgid "Username"
+msgstr "نام کاربری"
+
+#: protected/views/account/index.php:28
+msgid "Password"
+msgstr "کلمه عبور"
+
+#: protected/views/category/index.php:5
+msgid "Category"
+msgstr "مجموعه"
+
+#: protected/views/category/index.php:8
+#: themes/admin/views/layouts/main.php:113
+msgid "Category Manager"
+msgstr "مدیریت مجموعه"
+
 #: protected/views/layouts/main.php:39
 msgid "Home"
 msgstr "خانه"
 
-#: protected/views/layouts/main.php:40
+#: protected/views/layouts/main.php:40 themes/admin/views/layouts/main.php:114
 msgid "About"
 msgstr "درباره"
 
-#: protected/views/layouts/main.php:41
+#: protected/views/layouts/main.php:41 themes/admin/views/layouts/main.php:115
 msgid "Contact"
 msgstr "تماس"
 
-#: protected/views/layouts/main.php:42
+#: protected/views/layouts/main.php:42 themes/admin/views/layouts/main.php:116
 msgid "Login"
 msgstr "ورود"
 
-#: protected/views/layouts/main.php:43
+#: protected/views/layouts/main.php:43 themes/admin/views/layouts/main.php:117
 msgid "Logout"
 msgstr "خروج"
 
-#: protected/views/layouts/main.php:62
+#: protected/views/layouts/main.php:62 themes/admin/views/layouts/main.php:160
 msgid "All Rights Reserved."
-msgstr ""
+msgstr "تمامی حقوق محفوظ می باشد."
 
-#: protected/views/layouts/main.php:63
-msgid "Mohsen"
-msgstr "محسن"
+#: themes/admin/views/layouts/error.php:64
+msgid "404 Page not found!"
+msgstr "404 صفحه مورد نظر پیدا نشد!"
 
-#: themes/admin/views/layouts/main.php:152
-msgid "Name"
-msgstr "نام"
+#: themes/admin/views/layouts/error.php:65
+msgid "Oops! Sorry, an error has occured."
+msgstr "متاسفانه! یک خطا اتفاق افتاده است."
 
-#: themes/admin/views/layouts/main.php:153
-msgid "Type"
-msgstr "نوع"
+#: themes/admin/views/layouts/error.php:68
+msgid "Back To Dashboard"
+msgstr "بازگشت به داشبورد"
 
-#: themes/admin/views/layouts/main.php:154
-msgid "Show ID"
-msgstr "شماره شناسه"
+#: themes/admin/views/layouts/main.php:93
+msgid "Welcome,"
+msgstr "خوش آمدید،"
 
-#: themes/admin/views/layouts/main.php:155
-msgid "Management"
-msgstr "مدیریت"
+#: themes/admin/views/layouts/main.php:112
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#~ msgid "Name"
+#~ msgstr "نام"
+
+#~ msgid "Type"
+#~ msgstr "نوع"
+
+#~ msgid "Show ID"
+#~ msgstr "شماره شناسه"
+
+#~ msgid "Management"
+#~ msgstr "مدیریت"

@@ -25,8 +25,8 @@ class AccountController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        if(!Yii::app()->user->isGuest && Yii::app()->user->checkAccess('admin'))
-            $this->redirect(Controller::createUrl("Dashboard/index"));
+        if (!Yii::app()->user->isGuest && Yii::app()->user->checkAccess('admin'))
+            $this->redirect(Controller::createUrl("dashboard/index"));
         $this->layout = '//layouts/login';
         HtmlHelpers::putViewScript();
         HtmlHelpers::putGlobalScript();
@@ -38,7 +38,7 @@ class AccountController extends Controller {
     }
 
     public function actionLogin() {
-        
+
         # without ajax       
 //        $model = new LoginForm;
 //        // collect user input data
@@ -88,8 +88,18 @@ class AccountController extends Controller {
      * Logs out the current user and redirect to homepage.
      */
     public function actionLogout() {
+        yii::app()->user->setState('userSessionTimeout', null);        
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
+    }
+
+    /**
+     * Keep the session alive, called by timeout-dialog.
+     */
+    public function actionKeepAlive() {
+        yii::app()->user->setState('userSessionTimeout', time() + Yii::app()->session->timeout);
+        echo 'OK';
+        Yii::app()->end();
     }
 
 }
