@@ -1,0 +1,127 @@
+/* 
+    Document   : zice.style.custom.css
+    Created on : Sep 27, 2012, 2:19:14 PM
+    Author     : Mohsen
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.ico.gray.shadow.home{
+    background-repeat: no-repeat;
+    background-position: 20px 14px;
+}
+.ico.gray.shadow.spreadsheet{
+    background-repeat: no-repeat;
+    background-position: 20px 14px;
+}
+
+.main_menu li a{
+    padding-left: 45px;
+}
+
+.breadcrumbs{
+    float: right;
+}
+/*
+.tableName .dataTables_wrapper .dataTables_filter{
+    left:0;
+    rigth:auto;
+}
+.tableName .dataTables_wrapper .dataTables_filter input{
+    float: left;
+}
+.ColVis{ top:-50px;}
+
+.dataTables_wrapper .dataTables_length{
+    top:-50px;
+    position: absolute;
+    right:0px;
+}
+*/
+
+.dataTables_filter input {
+    background: url(../components/datatables/images/search-white.png) no-repeat 10px 5px #f8f8f8;
+    border : 1px solid #dcdcdc;
+    outline : 0;
+    padding : 2px 5px;
+    width : 166px;
+    line-height: 15px!important;
+    height : 15px!important;
+}
+
+.dataTables_filter {
+    position:absolute;
+    float:none;
+    width:auto;
+    margin: 7px 5px;
+}
+.dataTables_filter input {
+    color: #d9d9d9;
+    width:128px;
+    padding: 5px 15px 4px 32px !important;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+.dataTables_filter input[type="text"]:focus {
+    background: url(../components/datatables/images/search-dark.png) no-repeat 10px 5px #fcfcfc;
+    color: #6a6f75;
+    width: 170px;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dataTables_paginate {
+    float : right;
+    margin : 5px 0 0;
+    width : auto;
+}
+.dataTables_info {
+    float: left;
+    width:auto;
+    color:#aaaaaa;
+    line-height: 28px;
+}
+.pagination{
+    display: inline-block;
+    width: 100%;
+}
+
+#language-select{
+    float: left;
+    background-image: url("../images/accbg-rtl.png") !important;
+    background-position:  top right !important;
+    width: 170px;
+    text-align: center;
+    border-right: 1px solid #333333 !important;
+    border-left: 0px !important;
+}
+
+.text_loading {
+	font-size:14px;
+	text-align:center;
+	margin:0px 0 35px 0;
+	line-height:25px;
+	position: absolute;
+	left: 50%;
+	width: 200px;
+	top: 50%;
+	z-index: 50;
+	margin-left: -100px;
+	text-transform: uppercase;
+	padding: 20px 0px;
+	margin-top: -100px;
+	display: none;
+}
+.text_loading img {
+}
+.text_loading span {
+	display: block;
+	padding: 10px;
+	color: #CCC;
+}

@@ -1,0 +1,78 @@
+#left_menu {
+    float:right;    
+position: absolute;
+left: auto;
+right: 0px;
+top: 45px;
+z-index: 48;
+}
+body.dashborad{
+    background-position: top right;
+}
+#content {
+margin-left: 0px !important;
+margin-right: 240px;
+padding: 0px  0 0 10px;
+}
+#shortcut{
+    float:left;
+}
+#content .inner .logo{
+    float:right;
+}
+
+#header #account_info{
+    text-align: left;
+}
+
+#language-select{
+    background-image: url("../images/accbg.png") !important;
+    background-position:  top left !important;
+    float: right;
+    margin-left: auto;
+    width: 170px;
+    border-left: 1px solid #333333 !important;
+    border-right: 0px !important;
+}
+
+#header #account_info div{
+    background-image: url("../images/accbg-rtl.png");
+    background-position:  top right;
+    background-repeat: no-repeat;
+    border-right: 1px solid #333333;
+    border-left: 0px;
+}
+#header #account_info div:last-child{
+    border-left: 0px;
+}
+#header #logout{
+    float: left;
+}
+
+#topcontrol{
+    left: 10px !important;
+    right: auto !important;
+}
+
+.ico.gray.shadow{
+    background-position:  160px 16px !important; 
+}
+
+.main_menu li a{
+    padding-left: auto;
+    padding-right: 50px;
+    text-align: right;
+}
+.main_menu li.select{
+    background-image: url("../images/selectM-rtl.png");
+}
+
+#header #account_info{
+   direction: rtl;
+}
+#header #account_info img.gear{
+    margin-right: 5px;
+}
+.errorpage{
+    direction: rtl;
+}
