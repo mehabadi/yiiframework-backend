@@ -25,8 +25,8 @@ class AccountController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        if (!Yii::app()->user->isGuest && Yii::app()->user->checkAccess('admin'))
-            $this->redirect(Controller::createUrl("dashboard/index"));
+        if ((!Yii::app()->user->isGuest) && Yii::app()->user->checkAccess('admin'))
+            $this->redirect($this->createUrl("dashboard/index"));
         $this->layout = '//layouts/login';
         HtmlHelpers::putViewScript();
         HtmlHelpers::putGlobalScript();
@@ -46,7 +46,7 @@ class AccountController extends Controller {
 //            $model->attributes = $_POST['LoginForm']; //$data;            
 //            // validate user input and redirect to the previous page if valid
 //            if ($model->validate() && $model->login())  
-//                $this->redirect(Controller::createUrl("Dashboard"));                           
+//                $this->redirect(Yii::app()->user->returnUrl);                           
 //        }               
 //        $this->redirect(Yii::app()->user->returnUrl);  
 //        
@@ -54,21 +54,25 @@ class AccountController extends Controller {
         header('Cache-Control: no-cache, must-revalidate');
         header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
         //respond with json content type
-        header('Content-type:application/json');
+        //header('Content-type:application/json');
 
         $model = new LoginForm;
         // collect user input data
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm']; //$data;            
             // validate user input and redirect to the previous page if valid
-            if ($model->validate() && $model->login())
-                echo json_encode(array('error' => false, 'errorMessage' => '', 'url' => Controller::createUrl("Dashboard/index")));
+            $url = $this->createUrl((Yii::app()->request->cookies->contains('referrer') ? Yii::app()->request->cookies['referrer']->value : "dashboard/index"));
+            
+            if ($model->validate() && $model->authenticate()){
+                Yii::app()->request->cookies->clear();
+                echo json_encode(array('error' => false, 'errorMessage' => '', 'url' => $url));
+            }
             else
                 echo json_encode(array('error' => true, 'errorMessage' => _('UERNAME OR PASSWORD IS INCORRECT')));
-
             return true;
         }
         return false;
+        $this->render('index');
     }
 
     /**
@@ -87,9 +91,10 @@ class AccountController extends Controller {
     /**
      * Logs out the current user and redirect to homepage.
      */
-    public function actionLogout() {
-        yii::app()->user->setState('userSessionTimeout', null);        
+    public function actionLogout() {                
         Yii::app()->user->logout();
+        Yii::app()->session->clear();
+        Yii::app()->session->destroy();        
         $this->redirect(Yii::app()->homeUrl);
     }
 

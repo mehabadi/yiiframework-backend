@@ -52,14 +52,14 @@ class Categories extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('DomainId, SiteComponentId, Periority, Title, StatusId', 'required'),
-			array('DomainId, ParentId, SiteComponentId, Periority, StatusId, ImageId', 'numerical', 'integerOnly'=>true),
+			array('Title, StatusId', 'required'),
+			array('Periority, StatusId, ImageId', 'numerical', 'integerOnly'=>true),
 			array('Title, URLAlias', 'length', 'max'=>256),
 			array('Params', 'length', 'max'=>1024),
 			array('Description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('Id, DomainId, ParentId, SiteComponentId, Periority, Title, URLAlias, StatusId, ImageId, Params, Description', 'safe', 'on'=>'search'),
+			array('Title, Description', 'safe', 'on'=>'search'),
 		);
 	}
 

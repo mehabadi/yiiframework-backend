@@ -45,7 +45,7 @@ String.prototype.format = function() {
     $.timeoutDialog = function(options) {
         var settings = {
             timeout: 1200,
-            countdown: 60,
+            countdown: 10,
             title : 'Your session is about to expire!',
             message : 'You will be logged out in {0} seconds.',
             question: 'Do you want to stay signed in?',
@@ -167,9 +167,9 @@ String.prototype.format = function() {
             }, 
 
             redirectLogout: function(is_forced){
-                var target = settings.logout_redirect_url + '?next=' + encodeURIComponent(window.location.pathname + window.location.search);
-                if (!is_forced)
-                    target += '&timeout=t';
+                var target = settings.logout_redirect_url;// + '?next=' + encodeURIComponent(window.location.pathname + window.location.search);
+                //if (!is_forced)
+                    //target += '&timeout=t';
                 window.location = target;
             }
         };

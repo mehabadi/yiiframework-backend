@@ -1,4 +1,5 @@
 <?php /* @var $this Controller */ ?>
+<?php Yii::app()->request->cookies['referrer'] = new CHttpCookie('referrer', Yii::app()->controller->id . '/' . Yii::app()->controller->action->id);?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -19,7 +20,7 @@
         <?php if (Yii::app()->params->direction == 'rtl') { ?>
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/themes/admin/css/zice.style.rtl.css"/>
         <?php } ?>
-
+        <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/viewscripts/_global/_global.js"></script>
 
         <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/themes/admincomponents/flot/excanvas.min.js"></script><![endif]-->  
         <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/themes/admin/js/jquery.min.js"></script>
@@ -110,7 +111,7 @@
             $this->widget('zii.widgets.CMenu', array(
                 'items' => array(
                     array('label' => _('Dashboard'), 'url' => array('/dashboard/index'), 'itemOptions' => array('class' => 'limenu'), 'linkOptions' => array('class' => 'ico gray shadow home')),
-                    array('label' => _('Category Manager'), 'url' => array('/Category/index'), 'itemOptions' => array('class' => 'limenu'), 'linkOptions' => array('class' => 'ico gray shadow  spreadsheet')),
+                    array('label' => _('Category Manager'), 'url' => array('/Categories/index'), 'itemOptions' => array('class' => 'limenu'), 'linkOptions' => array('class' => 'ico gray shadow  spreadsheet')),
                     array('label' => _('About'), 'url' => array('/site/page', 'view' => 'about')),
                     array('label' => _('Contact'), 'url' => array('/site/contact')),
                     array('label' => _('Login'), 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
@@ -156,7 +157,8 @@
                 <!-- clear fix -->
                 <div class="clear"></div>        
                 <div id="footer"> 
-                    Copyright &copy; <?php echo date('Y'); ?> by <a href="<?php echo _(Yii::app()->params["copyright_url"]); ?>"><?php echo _(Yii::app()->params["copyright"]); ?></a>.<br/>
+                    <?php printf(_("Copyright &copy; %d by %s."),date('Y'), "<a href='".Yii::app()->params["copyright_url"]."'>"._(Yii::app()->params["copyright"])."</a>")?> 
+                        <br/>
                     <?php echo _("All Rights Reserved.") ?><br/>
                 </div>
             </div><!-- End content -->
@@ -171,6 +173,6 @@
             'keep_alive_url' => $this->createUrl('/account/keepalive'),
             'logout_redirect_url' => $this->createUrl('/account/logout'),
         ));
-        ?>      <div style="height:700px;"></div>
+        ?>      
     </body>
 </html>

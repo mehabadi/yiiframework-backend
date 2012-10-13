@@ -68,11 +68,13 @@
                 <h2><?php echo _("Oops! Sorry, an error has occured.") ?></h2>
 
             </div>
-            <center><a href="<?php echo Yii::app()->homeUrl; ?>"><?php echo _("Back To Dashboard") ?></a></center>
+            <center><a href="<?php echo $this->createurl("dashboard/index"); ?>"><?php echo _("Back To Dashboard") ?></a></center>
         </div>
         <div class="clear"></div>
         <div id="versionBar" >
-            <div class="copyright" > &copy; Copyright <?php echo date("Y"); ?>  All Rights Reserved <span class="tip"><a  href="<?php echo Yii::app()->params["copyright_url"]; ?>" title="<?php echo Yii::app()->params["copyright"]; ?>" ><?php echo Yii::app()->params["copyright"]; ?></a> </span> </div>
+            <div class="copyright" > 
+                <?php printf(_("Copyright &copy; %d by %s."),date('Y'), "<a href='".Yii::app()->params["copyright_url"]."'>"._(Yii::app()->params["copyright"])."</a>")?> 
+            </div>
             <!-- // copyright-->
         </div>
         <script type="text/javascript">

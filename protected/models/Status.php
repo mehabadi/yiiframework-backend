@@ -42,12 +42,12 @@ class Status extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Id, Title', 'required'),
-			array('Id', 'numerical', 'integerOnly'=>true),
+			array('Title', 'required'),
+			//array('Id', 'numerical', 'integerOnly'=>true),
 			array('Title', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('Id, Title', 'safe', 'on'=>'search'),
+			//array('Title', 'safe', 'on'=>'search'),
 		);
 	}
 

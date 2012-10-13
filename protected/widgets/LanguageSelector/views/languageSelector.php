@@ -26,5 +26,6 @@
         );
         echo CHtml::endForm();
     }
+    
     ?>
 </div>

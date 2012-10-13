@@ -23,8 +23,7 @@ class LoginForm extends CFormModel {
             array('username, password', 'required'),
             // rememberMe needs to be a boolean
             array('rememberMe', 'boolean'),
-            // password needs to be authenticated
-            array('password', 'authenticate'),
+            
         );
     }
 
@@ -38,40 +37,18 @@ class LoginForm extends CFormModel {
     }
 
     /**
-     * Authenticates the password.
-     * This is the 'authenticate' validator as declared in rules().
-     */
-    public function authenticate($attribute, $params) {
-        if (!$this->hasErrors()) {
-            $this->_identity = new UserIdentity($this->username, $this->password);
-            $this->_identity->authenticate();
-            switch ($this->_identity->errorCode) {
-                case UserIdentity::ERROR_NONE:
-                    Yii::app()->user->login($this->_identity);
-                    break;
-                default:
-                    $this->addError('password', _('Incorrect username or password.'));
-            }
-//            if (!$this->_identity->authenticate())
-//                $this->addError('password', 'Incorrect username or password.');
-        }
-    }
-
-    /**
      * Logs in the user using the given username and password in the model.
      * @return boolean whether login is successful
      */
-    public function login() {
-        
+    public function authenticate() {
         if ($this->_identity === null) {
-            $this->_identity = new UserIdentity($this->username, $this->password);
-            $this->_identity->authenticate();
-        }
-        if ($this->_identity->errorCode === UserIdentity::ERROR_NONE) {            
-            $duration = $this->rememberMe == 1 ? 3600 * 24 * 7 : Yii::app()->session->timeout; // 30 days
-            yii::app()->user->setState('userSessionTimeout', time()+ $duration);
-            Yii::app()->user->login($this->_identity, $duration);
-            return true;
+            $this->_identity = new UserIdentity($this->username, $this->password);            
+            if ($this->_identity->authenticate()) {
+                $duration = ($this->rememberMe == 1 ? 3600 * 24 * 7 : Yii::app()->session->timeout); // 7 days
+                yii::app()->user->setState('userSessionTimeout', time() + $duration);
+                Yii::app()->user->login($this->_identity, $duration);
+                return true;
+            }
         }
         else
             return false;

@@ -1,4 +1,19 @@
 $(function(){
+    var AllUCDives = $('div.UCViewer');
+    $.each(AllUCDives, function (index, divObj) {
+        var fileURL = $(divObj).attr('ucl');
+        $.ajax({
+            url: _BASE_URL + fileURL,
+            success: function (data) {
+                $(divObj).html(data);
+            },
+            error: function (errdata, errdata1, errdata2) {
+                $(divObj).html('ERRROR!!! ' + errdata + '<br>' + errdata1 + '<br>' + errdata2);
+            }
+        });
+    });
+    
+    
     $('#alertMessage').click(function(){
         hideTop();
     });
@@ -8,6 +23,20 @@ $(function(){
     });
             
 })
+
+function RefreshAjaxUCViewer(ViewerID) {
+    var divObj = $('#' + ViewerID);
+    var fileURL = divObj.attr('ucl');
+    $.ajax({
+        url: fileURL,
+        success: function (data) {
+            $(divObj).html(data);
+        },
+        error: function (errdata, errdata1, errdata2) {
+            $(divObj).html('ERRROR!!! ' + errdata + '<br>' + errdata1 + '<br>' + errdata2);
+        }
+    });
+}
 
 function hideTop(){
     $('#alertMessage').animate({
@@ -57,3 +86,4 @@ function Logout(){
     setTimeout($(".text_loading").slideDown(), 2000);
     setTimeout( "window.location.href='"+ _LOGOUT_URL +"'",2000 );
 }  
+

@@ -7,6 +7,7 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Behnoush',
+    'defaultController' => 'account',
     //default languages
     'sourceLanguage' => 'en',
     'language' => 'en',
@@ -19,7 +20,7 @@ return array(
         'application.components.*',
     ),
     'modules' => array(
-    // uncomment the following to enable the Gii tool
+        // uncomment the following to enable the Gii tool
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => '123',
@@ -32,7 +33,7 @@ return array(
         'user' => array(
             'class' => 'WebUser',
             // enable cookie-based authentication
-            'allowAutoLogin' => true,
+            'allowAutoLogin' => true,            
         ),
 //        'db' => array(
 //            'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/testdrive.db',
@@ -58,7 +59,7 @@ return array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
                 ),
-                // uncomment the following to show log messages on web pages
+            // uncomment the following to show log messages on web pages
 //                array(
 //                    'class' => 'CWebLogRoute',
 //                ),
@@ -72,15 +73,17 @@ return array(
         'urlManager' => array(
             'class' => 'application.components.UrlManager',
             'urlFormat' => 'path',
-            'urlSuffix'=>'.html',
+            'urlSuffix' => '.html',
             'showScriptName' => false,
             'rules' => array(
-                '/' => 'account/index',
-                '<language:(fa|ar|en)>/' => 'account/index',
-                '<language:(fa|ar|en)>/<action:(contact|login|logout)>/*' => 'account/<action>',
-                '<language:(fa|ar|en)>/<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<language:(fa|ar|en)>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<language:(fa|ar|en)>/<controller:\w+>/<action:\w+>/*' => '<controller>/<action>',
+                '' => 'account/index',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+//                '<language:(fa|ar|en)>/' => array('account/index','caseSensitive'=>false),
+//                '<language:(fa|ar|en)>/<controller:(site)>/<action:(login)>/*' => array('account/index','caseSensitive'=>false),
+//                '<language:(fa|ar|en)>/<action:(contact|login|logout)>/*' => array('account/<action>','caseSensitive'=>false),
+//                '<language:(fa|ar|en)>/<controller:\w+>/<id:\d+>' => array('<controller>/view','caseSensitive'=>false),
+//                '<language:(fa|ar|en)>/<controller:\w+>/<action:\w+>/<id:\d+>' => array('<controller>/<action>','caseSensitive'=>false),
+//                '<language:(fa|ar|en)>/<controller:\w+>/<action:\w+>/*' => array('<controller>/<action>','caseSensitive'=>false),
             ),
         ),
         'gettext' => array(
@@ -88,15 +91,18 @@ return array(
             // specify language_locale, could be based on domain name, URI, cookie, etc
             'language' => 'ar_ae', // means arabic
             'language' => 'fa_ir', // means persian
-        ),        
+        ),
         'HtmlHelpers' => array(
             'class' => 'application.components.HtmlHelpers',
         ),
         'session' => array(
-                'timeout' => 100,
+            'timeout' => 60*5,//set it by seconds
+            'class' => 'system.web.CDbHttpSession',
+            'connectionID' => 'db',
+            'sessionTableName' => 'tbl_session',
         ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
-    'params' => require(dirname(__FILE__).'/params.php'),
+    'params' => require(dirname(__FILE__) . '/params.php'),
 );

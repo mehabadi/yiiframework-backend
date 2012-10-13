@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: behnoushiran.com\n"
-"POT-Creation-Date: 2012-10-11 00:20+0330\n"
-"PO-Revision-Date: 2012-10-11 00:20+0330\n"
+"POT-Creation-Date: 2012-10-12 14:16+0330\n"
+"PO-Revision-Date: 2012-10-12 14:26+0330\n"
 "Last-Translator: Mohsen Meh Abadi <m.mehabadi@gmail.com>\n"
 "Language-Team:  <m.mehabadi@gmail.com>\n"
 "Language: Persian\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: protected/controllers/AccountController.php:67
+#: protected/controllers/AccountController.php:70
 msgid "UERNAME OR PASSWORD IS INCORRECT"
 msgstr "نام کاربری یا کلمه عبور اشتباه می باشد."
 
@@ -60,29 +60,44 @@ msgstr "تماس"
 msgid "Login"
 msgstr "ورود"
 
-#: protected/views/layouts/main.php:43 themes/admin/views/layouts/main.php:117
+#: protected/views/layouts/main.php:43 themes/admin/views/layouts/main.php:102
+#: themes/admin/views/layouts/main.php:117
 msgid "Logout"
 msgstr "خروج"
 
-#: protected/views/layouts/main.php:62 themes/admin/views/layouts/main.php:160
+#: protected/views/layouts/main.php:62 themes/admin/views/layouts/main.php:161
 msgid "All Rights Reserved."
 msgstr "تمامی حقوق محفوظ می باشد."
 
-#: themes/admin/views/layouts/error.php:64
+#: themes/admin/views/layouts/error.php:67
 msgid "404 Page not found!"
 msgstr "404 صفحه مورد نظر پیدا نشد!"
 
-#: themes/admin/views/layouts/error.php:65
+#: themes/admin/views/layouts/error.php:68
 msgid "Oops! Sorry, an error has occured."
 msgstr "متاسفانه! یک خطا اتفاق افتاده است."
 
-#: themes/admin/views/layouts/error.php:68
+#: themes/admin/views/layouts/error.php:71
 msgid "Back To Dashboard"
 msgstr "بازگشت به داشبورد"
+
+#: themes/admin/views/layouts/login.php:50
+#: themes/admin/views/layouts/main.php:159
+#, php-format
+msgid "Copyright &copy; %d by %s."
+msgstr "کپی رایت &copy; %d توسط %s."
 
 #: themes/admin/views/layouts/main.php:93
 msgid "Welcome,"
 msgstr "خوش آمدید،"
+
+#: themes/admin/views/layouts/main.php:93
+msgid "Profile Setting"
+msgstr "تنظیم پروفایل"
+
+#: themes/admin/views/layouts/main.php:102
+msgid "disconnect"
+msgstr "خروج"
 
 #: themes/admin/views/layouts/main.php:112
 msgid "Dashboard"

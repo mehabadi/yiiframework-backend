@@ -18,3 +18,5 @@ $this->menu=array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>
+
+<?php echo HtmlHelpers::PutAjaxUCViewer("List", "/categories/list"); ?>

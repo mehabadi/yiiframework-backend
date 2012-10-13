@@ -38,27 +38,27 @@ class GetText extends CApplicationComponent {
             $this->language = Yii::app()->request->cookies['language']->value;
 
         $this->language = $this->getLocaleID($this->language);
+
         $this->setDirection($this->language);
         if (!$this->locale_dir)
             $this->locale_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'locale';
 
         $this->domain = 'yii';
         if (Yii::app()->params["gettext_cache"] === false && $this->getLocaleID(Yii::app()->sourceLanguage) != $this->language) {
-
             $targetFolder = $this->locale_dir . '/' . $this->language . "/LC_MESSAGES/";
-
-            $folder = opendir($targetFolder);
-            while (false !== ($file = readdir($folder))) {
-                $pathFiles = $targetFolder . "/" . $file;
-                if ($file != ".." AND $file != "." AND strrchr($file, '.') == '.mo' AND $file != $this->domain . '.mo') {
-                    unlink($pathFiles);
+            if (is_dir($targetFolder)) {
+                $folder = opendir($targetFolder);
+                while (false !== ($file = readdir($folder))) {
+                    $pathFiles = $targetFolder . "/" . $file;
+                    if ($file != ".." AND $file != "." AND strrchr($file, '.') == '.mo' AND $file != $this->domain . '.mo') {
+                        unlink($pathFiles);
+                    }
                 }
+                closedir($folder);
+                $translatefile = $this->domain . time();
+                copy($this->locale_dir . '/' . $this->language . '/LC_MESSAGES/' . $this->domain . '.mo', $this->locale_dir . '/' . $this->language . '/LC_MESSAGES/' . $translatefile . '.mo');
+                $this->domain = $translatefile;
             }
-            closedir($folder);
-
-            $translatefile = $this->domain . time();
-            copy($this->locale_dir . '/' . $this->language . '/LC_MESSAGES/' . $this->domain . '.mo', $this->locale_dir . '/' . $this->language . '/LC_MESSAGES/' . $translatefile . '.mo');
-            $this->domain = $translatefile;
         }
 
 
@@ -81,8 +81,7 @@ class GetText extends CApplicationComponent {
      * Convert yii's canonical locale to the format required for gettext ( reverse of CLocale::getCanonicalID() )
      */
     static public function getLocaleID($id) {
-
-        switch ($id) {
+        switch (strtolower($id)) {
             case "fa":
                 $id = "fa_IR";
                 break;
@@ -91,8 +90,10 @@ class GetText extends CApplicationComponent {
                 break;
             case "ar":
                 $id = "ar_AE";
+                break;
+            default:
+                $id = self::setLocaleID($id);
         }
-
         return $id;
     }
 
@@ -108,6 +109,13 @@ class GetText extends CApplicationComponent {
             default:
                 Yii::app()->params->direction = 'ltr';
         }
+    }
+
+    static public function setLocaleID($id) {
+        $locale = explode('_', $id);
+        if (isset($locale[1]))
+            $locale[1] = strtoupper($locale[1]);
+        return implode('_', $locale);
     }
 
 }

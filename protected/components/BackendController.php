@@ -24,7 +24,7 @@ class BackendController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('index', 'delete', 'create', 'update'),
+                'actions' => array('index', 'list', 'delete', 'create', 'update'),
                 'roles' => array('admin', 'manager'),
             ),
             array('deny', // deny all users
@@ -34,11 +34,10 @@ class BackendController extends Controller {
     }
 
     public function beforeAction($action) {
-        // Check only when the user is logged in
+        //printf( "injam %d - %d | %b",yii::app()->user->getState('userSessionTimeout'),time(), yii::app()->user->getState('userSessionTimeout') < time());        
         if (yii::app()->user->getState('userSessionTimeout') < time()) {
-            // timeout
-            Yii::app()->user->logout();
-            $this->redirect($this->createUrl('/account/index'));  //
+            // timeout  
+            $this->redirect($this->createUrl('/Account/Logout'));
         } else {
             yii::app()->user->setState('userSessionTimeout', time() + Yii::app()->session->timeout);
             return true;
